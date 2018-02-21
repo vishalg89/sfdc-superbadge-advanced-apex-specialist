@@ -1,0 +1,38 @@
+<apex:page controller="Product2Extension" >
+    <apex:sectionHeader title="New Product" subtitle="Add Inventory" />
+    <apex:pageMessages id="pageMessages" />
+    <apex:form id="form" >
+        <apex:actionRegion >
+            <apex:pageBlock title="Existing Inventory" >
+                Chart goes here
+            </apex:pageBlock>
+            <apex:pageBlock title="New Products" >
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton action="{!save}" value="Save" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton action="{!addRows}" value="Add" />
+                </apex:pageBlockButtons>
+
+                <apex:pageBlockTable value="{!productsToInsert}" var="p" id="orderItemTable" >
+                    <apex:column headerValue="Name" >
+                        <apex:inputText value="{!p.Name}" />
+                    </apex:column>
+                    <apex:column headerValue="Family" >
+                        <apex:selectList value="{!p.Family}" size="1" multiselect="false" >
+                        </apex:selectList>
+                    </apex:column>
+                    <apex:column headerValue="Active" >
+                        <apex:inputField value="{!p.isActive}" />
+                    </apex:column>
+                    <apex:column headerValue="UnitPrice" >
+                        <inputText value="UnitPrice" />
+                    </apex:column>
+                    <apex:column headerValue="Init Inventory" >
+                        <apex:inputField value="{!p.Initial_Inventory__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:actionRegion>
+    </apex:form>
+</apex:page>

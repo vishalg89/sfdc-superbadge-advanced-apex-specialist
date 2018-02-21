@@ -1,0 +1,6 @@
+/config
+/debug
+*.sublime-project
+
+node_modules/
+*.log
