@@ -4,8 +4,6 @@
  **/
 public class TestDataFactory {
 
-  private static final Id STANDARD_PRICEBOOK_ID = Test.isRunningTest() ? Test.getStandardPricebookId() : [SELECT Id FROM PriceBook2 WHERE isStandard = true LIMIT 1].Id;
-
   /**
    * @name constructCollaborationGroup
    * @description
@@ -48,7 +46,7 @@ public class TestDataFactory {
     List<PricebookEntry> pbes = new List<PricebookEntry>();
     for (Product2 product: productList) {
       PricebookEntry pbe = new PricebookEntry();
-      pbe.Pricebook2Id = STANDARD_PRICEBOOK_ID;
+      pbe.Pricebook2Id = Constants.STANDARD_PRICEBOOK_ID;
       pbe.Product2Id = product.Id;
       pbe.IsActive = true;
       pbe.UnitPrice = 1;
@@ -103,7 +101,7 @@ public class TestDataFactory {
       o.Name = 'Order ' + i;
       o.AccountId = accts[Math.mod(i, listSize)].Id;
       o.EffectiveDate = Date.today();
-      o.Pricebook2Id = STANDARD_PRICEBOOK_ID;
+      o.Pricebook2Id = Constants.STANDARD_PRICEBOOK_ID;
       o.Status = 'Draft';
       orders.add(o);
     }
@@ -131,6 +129,11 @@ public class TestDataFactory {
     }
 
     return orderItemList;
+  }
+
+  public static void VerifyQuantityOrdered(Product2 originalProduct, Product2 updatedProduct, Integer qtyOrdered){
+    Integer sumQuantity = Integer.valueOf(originalProduct.Quantity_Ordered__c) + qtyOrdered;
+    System.assertEquals(updatedProduct.Quantity_Ordered__c, sumQuantity);
   }
 
   /**
