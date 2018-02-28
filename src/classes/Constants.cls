@@ -7,5 +7,5 @@ public class Constants {
   public static final String ACTIVATED_ORDER_STATUS = 'Activated';
   public static final String INVENTORY_ANNOUNCEMENTS = 'Inventory Announcements';
   public static final String ERROR_MESSAGE = 'An error has occurred, please take a screenshot with the URL and send it to IT.';
-  public static final Id STANDARD_PRICEBOOK_ID = Test.isRunningTest() ? Test.getStandardPricebookId() : [SELECT Id FROM PriceBook2 WHERE isStandard = true LIMIT 1].Id;
+  public static final Id STANDARD_PRICEBOOK_ID = '01s6A0000031LaYQAU'; //Test.isRunningTest() ? Test.getStandardPricebookId() : [SELECT Id FROM PriceBook2 WHERE isStandard = true LIMIT 1].Id;
 }
